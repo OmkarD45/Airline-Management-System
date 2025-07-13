@@ -1,0 +1,89 @@
+CREATE TABLE Carrier (
+    CarrierID INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    CarrierName VARCHAR(100),
+    DiscountPercentageThirtyDaysAdvanceBooking INT,
+    DiscountPercentageSixtyDaysAdvanceBooking INT,
+    DiscountPercentageNinteyDaysAdvanceBooking INT,
+    BulkBookingDiscount INT,
+    RefundPercentageForTicketCancellation2DaysBeforeTravelDate INT,
+    RefundPercentageForTicketCancellation10DaysBeforeTravelDate INT,
+    RefundPercentageForTicketCancellation20DaysOrMoreBeforeTravelDate INT,
+    SilverUserDiscount INT,
+    GoldUserDiscount INT,
+    PlatinumUserDiscount INT
+);
+
+
+------------------------Admin-------------------------------
+CREATE TABLE Admin (
+    AdminID VARCHAR(50) PRIMARY KEY,
+    Password VARCHAR(50)
+);
+
+CREATE TABLE Passenger (
+    PassengerID VARCHAR(50) PRIMARY KEY,
+    Password VARCHAR(50)
+);
+
+-- Sample Data
+INSERT INTO Admin VALUES ('admin01', 'adminpass');
+INSERT INTO Passenger VALUES ('user01', 'userpass');
+select * from ADMIN;
+select * from PASSENGER;
+
+
+CREATE TABLE Carrier (
+    CarrierID INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    CarrierName VARCHAR(100),
+    DiscountPercentageThirtyDaysAdvanceBooking INT,
+    DiscountPercentageSixtyDaysAdvanceBooking INT,
+    DiscountPercentageNinteyDaysAdvanceBooking INT,
+    BulkBookingDiscount INT,
+    RefundPercentageForTicketCancellation2DaysBeforeTravelDate INT,
+    RefundPercentageForTicketCancellation10DaysBeforeTravelDate INT,
+    RefundPercentageForTicketCancellation20DaysOrMoreBeforeTravelDate INT,
+    SilverUserDiscount INT,
+    GoldUserDiscount INT,
+    PlatinumUserDiscount INT
+);
+
+
+CREATE TABLE Flight (
+    FlightID INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    CarrierID INT,
+    Origin VARCHAR(100),
+    Destination VARCHAR(100),
+    AirFare INT,
+    SeatCapacityBusinessClass INT,
+    SeatCapacityEconomyClass INT,
+    SeatCapacityExecutiveClass INT
+);
+
+CREATE TABLE UserTable (
+    UserID INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),
+    UserName VARCHAR(50),
+    Password VARCHAR(30),
+    Phone BIGINT,
+    EmailId VARCHAR(100),
+    Address1 VARCHAR(100),
+    Address2 VARCHAR(100),
+    City VARCHAR(50),
+    State VARCHAR(50),
+    Country VARCHAR(50),
+    ZipCode BIGINT,
+    DOB DATE,
+    Role VARCHAR(20),
+    UserCategory VARCHAR(20)
+);
+
+CREATE TABLE FlightBooking (
+    BookingID INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+    FlightID INT,
+    PassengerID INT,
+    BookingDate DATE,
+    ClassType VARCHAR(20), -- Economy / Business / Executive
+    SeatCount INT,
+    FOREIGN KEY (FlightID) REFERENCES Flight(FlightID),
+    FOREIGN KEY (PassengerID) REFERENCES UserTable(UserID)
+);
+
