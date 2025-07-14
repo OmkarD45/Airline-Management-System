@@ -1,19 +1,21 @@
+
 package com.Controller;
 
-import jakarta.servlet.*;
-import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.*;
 import java.io.IOException;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import com.Model.Carrier;
 import com.Dao.CarrierDao;
 
-@WebServlet("/UpdateCarrierController")
-public class UpdateCarrierController extends HttpServlet {
+@WebServlet("/AddCarrierController")
+public class AddCarrierController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
-    	int id = Integer.parseInt(request.getParameter("id"));
 
         Carrier c = new Carrier();
         c.setCarrierName(request.getParameter("carrierName"));
@@ -27,14 +29,13 @@ public class UpdateCarrierController extends HttpServlet {
         c.setSilver(Integer.parseInt(request.getParameter("silver")));
         c.setGold(Integer.parseInt(request.getParameter("gold")));
         c.setPlatinum(Integer.parseInt(request.getParameter("platinum")));
-
         CarrierDao dao = new CarrierDao();
-        boolean updated = dao.updateCarrierById(c, id);
+        boolean success = dao.insertCarrier(c);
 
-        if (updated) {
-            response.sendRedirect("show_carriers.jsp?msg=updated");
+        if (success) {
+            response.sendRedirect("add_carrier.jsp?msg=success");
         } else {
-            response.sendRedirect("show_carriers.jsp?msg=notupdated");
+            response.sendRedirect("add_carrier.jsp?msg=failure");
         }
     }
 }

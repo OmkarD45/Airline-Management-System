@@ -104,7 +104,7 @@
                     for (Carrier c : carriers) {
                 %>
                     <tr>
-                        <td><%= c.getCarrierId() %></td>
+                        <td><%= c.getCarrierId()%></td>
                         <td><%= c.getCarrierName() %></td>
                         <td><%= c.getD30() %></td>
                         <td><%= c.getD60() %></td>
@@ -118,7 +118,7 @@
                         <td><%= c.getPlatinum() %></td>
                         <td>
                             <form action="EditCarrierController" method="get" style="display:inline;">
-                                <input type="hidden" name="id" value="<%= c.getCarrierId() %>">
+                                <input type="hidden" name="id" value="<%=c.getCarrierId()  %>">
                                 <button class="action-btn edit-btn" type="submit">Edit</button>
                             </form>
                             <form action="DeleteCarrierController" method="post" style="display:inline;">

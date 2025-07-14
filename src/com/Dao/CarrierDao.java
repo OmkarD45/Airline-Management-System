@@ -15,7 +15,7 @@ public class CarrierDao {
 
         try {
             Class.forName("org.apache.derby.jdbc.EmbeddedDriver");
-            Connection con = DriverManager.getConnection("jdbc:derby:C:\\Users\\omkar\\MyDB;create=true");
+            Connection con = DriverManager.getConnection("jdbc:derby:D:\\Users\\2798556\\MyDB;create=true");
 
             String query = "INSERT INTO Carrier (CarrierName, DiscountPercentageThirtyDaysAdvanceBooking, " +
                     "DiscountPercentageSixtyDaysAdvanceBooking, DiscountPercentageNinteyDaysAdvanceBooking, " +
@@ -54,7 +54,7 @@ public class CarrierDao {
 
         try {
             Class.forName("org.apache.derby.jdbc.EmbeddedDriver");
-            Connection con = DriverManager.getConnection("jdbc:derby:C:\\Users\\omkar\\MyDB;create=true");
+            Connection con = DriverManager.getConnection("jdbc:derby:D:\\Users\\2798556\\MyDB;create=true");
             String query = "SELECT * FROM Carrier";
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery(query);
@@ -87,7 +87,7 @@ public class CarrierDao {
 
     public Carrier getCarrierById(int id) {
         Carrier c = new Carrier();
-        try (Connection con = DriverManager.getConnection("jdbc:derby:C:\\Users\\omkar\\MyDB;create=true")) {
+        try (Connection con = DriverManager.getConnection("jdbc:derby:D:\\Users\\2798556\\MyDB;create=true")) {
             String q = "SELECT * FROM Carrier WHERE CarrierID=?";
             PreparedStatement pst = con.prepareStatement(q);
             pst.setInt(1, id);
@@ -116,7 +116,7 @@ public class CarrierDao {
 
     public boolean updateCarrierById(Carrier c, int id) {
         boolean status = false;
-        try (Connection con = DriverManager.getConnection("jdbc:derby:C:\\Users\\omkar\\MyDB;create=true")) {
+        try (Connection con = DriverManager.getConnection("jdbc:derby:D:\\Users\\2798556\\MyDB;create=true")) {
             String query = "UPDATE Carrier SET CarrierName=?, DiscountPercentageThirtyDaysAdvanceBooking=?, " +
                     "DiscountPercentageSixtyDaysAdvanceBooking=?, DiscountPercentageNinteyDaysAdvanceBooking=?, " +
                     "BulkBookingDiscount=?, RefundPercentageForTicketCancellation2DaysBeforeTravelDate=?, " +
@@ -149,7 +149,7 @@ public class CarrierDao {
     }
 
     public boolean deleteCarrierById(int id) {
-        try (Connection con = DriverManager.getConnection("jdbc:derby:C:\\Users\\omkar\\MyDB;create=true")) {
+        try (Connection con = DriverManager.getConnection("jdbc:derby:D:\\Users\\2798556\\MyDB;create=true")) {
         	String q = "DELETE FROM Carrier WHERE CarrierID=?";
             PreparedStatement pst = con.prepareStatement(q);
             pst.setInt(1, id);

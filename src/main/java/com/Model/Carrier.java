@@ -2,8 +2,14 @@ package com.Model;
 
 public class Carrier {
     private String carrierName;
-    private int d30, d60, d90, bulk;
-    private int r2, r10, r20;
+    private int CarrierId,d30, d60, d90, bulk;
+    public int getCarrierId() {
+		return CarrierId;
+	}
+	public void setCarrierId(int carrierId) {
+		CarrierId = carrierId;
+	}
+	private int r2, r10, r20;
     private int silver, gold, platinum;
 
     public String getCarrierName() { return carrierName; }

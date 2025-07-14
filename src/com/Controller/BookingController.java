@@ -1,11 +1,12 @@
+
 package com.Controller;
 
 import java.io.IOException;
 import java.sql.*;
 import java.time.LocalDate;
-import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.*;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.*;
 
 @WebServlet("/BookingController")
 public class BookingController extends HttpServlet {
@@ -26,7 +27,7 @@ public class BookingController extends HttpServlet {
 
         try {
             Class.forName("org.apache.derby.jdbc.EmbeddedDriver");
-            con = DriverManager.getConnection("jdbc:derby:C:\\Users\\omkar\\MyDB;create=true");
+            con = DriverManager.getConnection("jdbc:derby:D:\\Users\\2798556\\MyDB;create=true");
 
             // 🔍 Step 1: Lookup UserID from username in USERTABLE
             pst = con.prepareStatement("SELECT UserID FROM USERTABLE WHERE UserName = ?");
@@ -80,7 +81,6 @@ public class BookingController extends HttpServlet {
 //                        case "business" -> "UPDATE Flight SET SeatCapacityBusinessClass = SeatCapacityBusinessClass - ? WHERE FlightID=?";
 //                        case "executive" -> "UPDATE Flight SET SeatCapacityExecutiveClass = SeatCapacityExecutiveClass - ? WHERE FlightID=?";
 //                        default -> null;
-//                    };
                 	String updateQuery = null;
                 	switch (classType.toLowerCase()) {
                 	case "economy" :
